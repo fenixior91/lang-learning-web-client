@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-6">
+    <ng-template #rt let-r="result" let-t="word">
+      {{r.phrase}}
+    </ng-template>
+
+    <div class="input-group mb-3">
+      <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="selectedWord" [ngbTypeahead]="search"
+             [resultTemplate]="rt"
+             [inputFormatter]="formatter"/>
+      <div class="input-group-append">
+        <button class="btn btn-primary" (click)="showMeanings()">Search</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+      <span *ngFor="let meaning of selectedWord.meanings">
+        <h3>{{meaning.phrase}}</h3>
+        <p *ngFor="let sentence of meaning.sentences">{{sentence.sentence}}</p>
+      </span>
+  </div>
+</div>
